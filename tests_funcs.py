@@ -30,5 +30,24 @@ class TestFuncs(unittest.TestCase):
         self.assertEqual(funcs.ecart_type_function([-10,-7,3,6,12]),8.182909018191515)
         self.assertEqual(funcs.ecart_type_function([0,0,0,0,0,0,0,0,1]),0.31426968052735443)
 
+    def test_suite_arith(self):
+        self.assertEqual(funcs.suite_arith_function([1,2,3]), True)
+        self.assertEqual(funcs.suite_arith_function([1,2,3,5,5,6]), False)
+        self.assertEqual(funcs.suite_arith_function([-10,-7,3,6,12]), False)
+        self.assertEqual(funcs.suite_arith_function([-10,3,-6,12]), False)
+        self.assertEqual(funcs.suite_arith_function([10,-5,-10,5,0,-15,15]), True)
+        self.assertEqual(funcs.suite_arith_function([-4,-1,2,5,8]), True)
+        self.assertEqual(funcs.suite_arith_function([7]), False)
+        self.assertEqual(funcs.suite_arith_function([8,8,8]), True)
+
+    def test_suite_geo(self):
+        self.assertEqual(funcs.suite_geo_function([1,2,3]), False)
+        self.assertEqual(funcs.suite_geo_function([0,1,2,3]), False)
+        self.assertEqual(funcs.suite_geo_function([8,4,16,2,32]), True)
+        self.assertEqual(funcs.suite_geo_function([5,10,40,20]), True)
+        self.assertEqual(funcs.suite_geo_function([-5,-10,-40,-20]), True)
+        self.assertEqual(funcs.suite_geo_function([-5,5]), True)
+        self.assertEqual(funcs.suite_geo_function([7]), False)
+
 if __name__ == '__main__':
     unittest.main()
