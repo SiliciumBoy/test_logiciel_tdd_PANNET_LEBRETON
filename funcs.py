@@ -13,3 +13,6 @@ def mean_function(int_list):
 
 def mediane_function(a):
 	return np.median(a)
+
+def ecart_type_function(a):
+	return np.std(a)
