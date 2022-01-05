@@ -34,9 +34,9 @@ def suite_geo_function(int_list):
 	if zero is True:
 		return False
 
-	# not_negative = bool([item for item in int_list if item < 0])
-	# if not_negative is True:
-	# 	return False
+	not_negative = bool([item for item in int_list if item < 0])
+	if not_negative is True:
+		return False
 
 	if len(int_list) > 1:
 		div = int_list[1] / int_list[0]
@@ -46,3 +46,25 @@ def suite_geo_function(int_list):
 		return True
 	else:
 		return False
+
+def suite_geo_next(int_list, n):
+	int_list.sort()
+	zero = 0 in int_list
+	if zero is True:
+		return False, int_list
+
+	not_negative = bool([item for item in int_list if item < 0])
+	if not_negative is True:
+		return False, int_list
+
+	if len(int_list) > 1:
+		div = int_list[1] / int_list[0]
+		for index in range(1, len(int_list) - 1):
+			if (int_list[index + 1] / int_list[index]) != div:
+				return False, int_list
+		for index in range(0, n):
+			int_list.append(int_list[-1] * div)
+		int_list.sort()
+		return True, int_list
+	else:
+		return False, int_list

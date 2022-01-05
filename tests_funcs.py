@@ -45,9 +45,17 @@ class TestFuncs(unittest.TestCase):
         self.assertEqual(funcs.suite_geo_function([0,1,2,3]), False)
         self.assertEqual(funcs.suite_geo_function([8,4,16,2,32]), True)
         self.assertEqual(funcs.suite_geo_function([5,10,40,20]), True)
-        self.assertEqual(funcs.suite_geo_function([-5,-10,-40,-20]), True)
-        self.assertEqual(funcs.suite_geo_function([-5,5]), True)
+        self.assertEqual(funcs.suite_geo_function([-5,-10,-40,-20]), False)
+        self.assertEqual(funcs.suite_geo_function([-5,5]), False)
         self.assertEqual(funcs.suite_geo_function([7]), False)
+
+    def test_suite_geo_next(self):
+        self.assertEqual(funcs.suite_geo_next([1,2,3], 3), (False, [1,2,3]))
+        self.assertEqual(funcs.suite_geo_next([8,4,16,2,32], 4), (True, [2,4,8,16,32,64,128,256,512]))
+        self.assertEqual(funcs.suite_geo_next([5,10,40,20],2), (True, [5,10,20,40,80,160]))
+        self.assertEqual(funcs.suite_geo_next([-5,-10,-40,-20], 2), (False, [-40,-20,-10,-5]))
+        self.assertEqual(funcs.suite_geo_next([7], 10), (False, [7]))
+        self.assertEqual(funcs.suite_geo_next([-5,5], 10), (False, [-5,5]))
 
 if __name__ == '__main__':
     unittest.main()
