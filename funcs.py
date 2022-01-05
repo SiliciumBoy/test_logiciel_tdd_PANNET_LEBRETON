@@ -47,6 +47,20 @@ def suite_geo_function(int_list):
 	else:
 		return False
 
+def suite_arith_next(int_list, n):
+		int_list.sort()
+		if len(int_list) > 1:
+			diff = int_list[1] - int_list[0]
+			for index in range(1, len(int_list) - 1):
+				if (int_list[index + 1] - int_list[index]) != diff:
+					return False, int_list
+			if n >= 0:
+				for index in range(0, n):
+					int_list.append(int_list[-1] + diff)
+			return True, int_list
+		return False, int_list
+	
+
 def suite_geo_next(int_list, n):
 	int_list.sort()
 	zero = 0 in int_list
@@ -62,9 +76,9 @@ def suite_geo_next(int_list, n):
 		for index in range(1, len(int_list) - 1):
 			if (int_list[index + 1] / int_list[index]) != div:
 				return False, int_list
-		for index in range(0, n):
-			int_list.append(int_list[-1] * div)
-		int_list.sort()
+		if n >= 0:
+			for index in range(0, n):
+				int_list.append(int_list[-1] * div)
+			int_list.sort()
 		return True, int_list
-	else:
-		return False, int_list
+	return False, int_list

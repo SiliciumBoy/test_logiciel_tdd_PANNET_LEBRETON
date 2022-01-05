@@ -49,6 +49,17 @@ class TestFuncs(unittest.TestCase):
         self.assertEqual(funcs.suite_geo_function([-5,5]), False)
         self.assertEqual(funcs.suite_geo_function([7]), False)
 
+    def test_suite_arith_next(self):
+        self.assertEqual(funcs.suite_arith_next([1,2,3], 2), (True, [1,2,3,4,5]))
+        self.assertEqual(funcs.suite_arith_next([1,2,3], 0), (True, [1,2,3]))
+        self.assertEqual(funcs.suite_arith_next([1,2,3], -4), (True, [1,2,3]))
+        self.assertEqual(funcs.suite_arith_next([1,2,3,5,5,6], 7), (False, [1,2,3,5,5,6]))
+        self.assertEqual(funcs.suite_arith_next([10,-5,-10,5,0,-15,15], 3), (True, [-15,-10,-5,0,5,10,15,20,25,30]))
+        self.assertEqual(funcs.suite_arith_next([-10,3,-6,12], 4), (False, [-10,-6,3,12]))
+        self.assertEqual(funcs.suite_arith_next([-4,-1,2,5,8],1), (True, [-4,-1,2,5,8,11]))
+        self.assertEqual(funcs.suite_arith_next([56],1), (False, [56]))
+        self.assertEqual(funcs.suite_arith_next([8,8,8],8), (True, [8,8,8,8,8,8,8,8,8,8,8]))
+
     def test_suite_geo_next(self):
         self.assertEqual(funcs.suite_geo_next([1,2,3], 3), (False, [1,2,3]))
         self.assertEqual(funcs.suite_geo_next([8,4,16,2,32], 4), (True, [2,4,8,16,32,64,128,256,512]))
